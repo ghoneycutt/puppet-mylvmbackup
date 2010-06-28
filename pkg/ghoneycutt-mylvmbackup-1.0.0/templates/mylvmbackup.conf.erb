@@ -1,0 +1,106 @@
+# This file is being maintained by Puppet.
+# DO NOT EDIT
+
+# mylvmbackup configuration file
+#
+# Every line beginning with a pound sign (#) will be treated as a comment.
+# Values should be put right after the equals sign, without whitespace.
+# Please refer to the mylvmbackup(1) manual page for more information
+
+#
+# These values define how mylvmbackup should connect to the local MySQL server
+# Usually host, port and socket path don't need to be provided, if the
+# DBD::MySQL Perl module has been compiled with the same values that the local
+# MySQL server uses. If a non-empty host name other than "localhost" is
+# provided, the socket path is ignored.
+#
+[mysql]
+user=root
+password=
+host=
+port=
+socket=
+mycnf=/etc/my.cnf
+
+#
+# LVM-specific options
+#
+[lvm]
+vgname=<%= mylvmbackupVgname %>
+lvname=<%= mylvmbackupLvname %>
+backuplv=
+lvsize=<%= mylvmbackupLvsize %>
+
+#
+# File system specific options
+#
+[fs]
+xfs=0
+mountdir=/var/tmp/mylvmbackup/mnt/
+backupdir=<%= mylvmbackupBackupDir %>
+relpath=
+
+#
+# Names of required external utilities
+# Make sure the $PATH is set accordingly, especially for cron jobs!
+#
+[tools]
+lvcreate=lvcreate
+lvremove=lvremove
+lvs=lvs
+mount=mount
+tar=tar
+#compress=gzip
+# alternative tar backup compression tools
+#compress=lzma
+compress=bzip2
+# or (for no compression):
+#compress=cat
+#
+rsync=rsync
+rsnap=
+umount=umount
+
+#
+# Other configuration options
+#
+[misc]
+backuptype=tar
+prefix=backup
+suffix=_mysql
+tararg=cvf
+tarsuffixarg=
+tarfilesuffix=.tar.bz2
+# for gzip
+#compressarg=--stdout --verbose --best
+# for LZMA:
+#compressarg=--stdout --verbose -7
+# for bzip2:
+compressarg=--stdout --verbose -7
+# for cat:
+#compressarg=
+rsyncarg=-avWP
+datefmt=%Y%m%d_%H%M%S
+innodb_recover=1
+pidfile=/var/tmp/mylvmbackup_recoverserver.pid
+skip_flush_tables=0
+extra_flush_tables=1
+skip_mycnf=0
+hooksdir=/usr/share/mylvmbackup
+skip_hooks=1
+keep_snapshot=0
+keep_mount=0
+quiet=1
+
+#
+# Logging options. The Sys::Syslog module is required for syslog option
+# See "perldoc Sys::Syslog" for more information.
+#
+[logging]
+# 'console' (STDOUT, STDERR) or 'syslog' or 'both'.
+log_method=syslog
+# 'native', 'tcp', 'udp'. Default is 'native'
+syslog_socktype=native
+syslog_facility=
+# If using remote syslog, don't forget to change the socket type to tcp or udp.
+syslog_remotehost=
