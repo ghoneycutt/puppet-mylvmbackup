@@ -1,0 +1,5 @@
+1.0.0 - 20100628
+    * initial release
+
+1.1.0 - 20100818
+    * uses a mylvmbackup mysql user instead of root

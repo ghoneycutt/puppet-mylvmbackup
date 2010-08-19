@@ -1,0 +1,34 @@
+{
+  "checksums": {
+    "spec/spec_helper.rb": "ca19ec4f451ebc7fdb035b52eae6e909",
+    "CHANGELOG": "d12763b9902fe136df5e190cb6777ae8",
+    "LICENSE": "29b122c079d7532e3df87a749788107f",
+    "templates/mylvmbackup.conf.erb": "a95f3a8fcf957c68acf89955add470f9",
+    "README": "48ed614f7319d53a29a2d17f61ebeb07",
+    "files/user_setup.sql": "c90afd2b8ffc83df7ae0d4d8faead7e3",
+    "tests/init.pp": "7018c89a14818bb647fd67f3fb8f375a",
+    "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
+    "metadata.json": "d34d0b70aba36510fbc2df4e667479ef",
+    "Modulefile": "5b98f00d7b25e814123f863d3cfeccef",
+    "manifests/init.pp": "f112c442ba1299444184ab97b2c4ad17"
+  },
+  "version": "1.1.0",
+  "dependencies": [
+    {
+      "version_requirement": ">= 1.0.0",
+      "name": "ghoneycutt/backup"
+    },
+    {
+      "version_requirement": ">= 1.0.0",
+      "name": "ghoneycutt/generic"
+    },
+    {
+      "version_requirement": ">= 1.0.0",
+      "name": "ghoneycutt/mysql"
+    }
+  ],
+  "name": "ghoneycutt-mylvmbackup",
+  "types": [
+
+  ]
+}
